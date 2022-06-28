@@ -1,0 +1,60 @@
+#Loading packages
+library(datos)
+library(ggplot2)
+library(readr)
+library(scales)
+library(stringr)
+library(utf8)
+library(devtools)
+library(ggpubr)
+#Loading data base
+DBT=read_csv2("DB_WS1.csv")
+attach(DBT)
+DBT$V10[1]="Very true"
+
+Genre=factor(V2,levels=c("Male","Female"))
+barplot(data.frame(table(Genre)))
+barplot(as.vector.factor(V2))
+
+#First graph
+Motivation <- c(rep("Intrinsic motivation",5),rep("Identified regulation",5),rep("Introjected regulation",5),rep("External regulation",5),rep("Amotivation",5))
+Preference <- rep(c("Like very much","Like","Neutral","Don't like very much","Dislike"),5)
+#Para introducir las frecuencias
+Values=c(4.75,3.85,3.19,2.62,1.6,4.74,4.41,4.09,3.42,2.45,3.51,3.63,3.26,2.71,2.10,3.39,3.53,3.6,2.96,2.63,1.14,1.64,2.01,2.6,3.63)
+#Formando el frame
+data <- data.frame(Motivation,Preference,Values)
+#Indicando el orden de las barras en la gr�fica
+data$Motivation=factor(data$Motivation,levels=c("Intrinsic motivation","Identified regulation","Introjected regulation","External regulation","Amotivation"))
+data$Preference=factor(data$Preference,levels=c("Like very much","Like","Neutral","Don't like very much","Dislike"))
+
+ggplot(data, aes(fill=Preference, y=Values, x=Motivation)) + 
+  geom_bar(position="dodge", stat="identity",color = "black")+ 
+  geom_text(aes(label = Values), position=position_dodge(.9), vjust=-0.3,color = "black")+
+  ggtitle("Relationship between preferences and motivation\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_fill_manual(values = c("#DE3163","#FFBF00","#DFFF00","#9FE2BF","#CCCCFF"))
+
+#Second graph
+Questions <- c(rep("1",2),rep("2",2),rep("3",2),rep("4",2),rep("5",2),rep("6",2),rep("7",2),rep("8",2),rep("9",2),rep("10",2),rep("11",2),rep("12",2),rep("13",2),rep("14",2),rep("15",2),rep("16",2),rep("17",2),rep("18",2))
+Preference <- rep(c("Want","Don't want"),18)
+#Para introducir las frecuencias
+Values=c(3.6, 2.57,3.87,2.76,3.84,2.69,3.79,3.07,4.64,3.51,4.35, 3.49,4.49,3.54,4.29,3.36,
+         4.27,3.57,3.4,2.59,2.87,2.16,4.24,3.29,3.17,3.09,3.16,2.94,1.83,2.87,1.69,2.61,
+         1.53,2.47,1.36,2.24)
+#Formando el frame
+data <- data.frame(Questions,Preference,Values)
+data$Questions=factor(data$Questions,levels=c("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"))
+data$Preference=factor(data$Preference,levels=c("Don't want","Want"))
+df_cumsum <- ddply(data,"Questions",transform, label_ypos=cumsum(Values))
+head(df_cumsum)
+#Indicando el orden de las barras en la gr�fica
+
+
+ggplot(data=df_cumsum, aes(fill=Preference, y=Values, x=Questions)) + 
+  geom_bar(stat="identity",color = "black")+ 
+  geom_text(aes(y=label_ypos, label = Values), vjust=1.6, color="white", size=3.5)+
+  ggtitle("I.E. in English and motivation\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_fill_manual(values = c("#DE3163","#FFBF00"))
+V10[1]
+
