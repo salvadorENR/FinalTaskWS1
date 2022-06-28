@@ -53,5 +53,10 @@
     scale_fill_manual(values = c("#DE3163","#FFBF00"))
   V10[1]
   V10[1]="Very true"
+<<<<<<< HEAD
  
 Por qué no aparece está actualización
+=======
+  I will do the commit from browser
+  nuevofff
+>>>>>>> d77a6d56d1e00876f50b2169b834d4703c8d59b8
