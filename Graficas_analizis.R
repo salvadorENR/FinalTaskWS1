@@ -35,6 +35,7 @@ ggplot(d2, aes(x="",y=y,fill=x)) + geom_col(color = "black")+
 
 #Valores (1) Very true, (2) Not very true, (3) Sort of true, (4) Not at all true
 
+#********************************* Var 3 ********************************************************************
 Cod<-function(A){
   ch<-numeric();
   for (i in 1:length(A)) {
@@ -49,7 +50,6 @@ colnames(d1) <- c('cat','freq')
 d2=data.frame(x=d1$cat,y=d1$freq)
 d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
 
-
 ggplot(d2, aes(x,y)) +
   geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
   geom_text(aes(label = y), vjust = -0.3, color = "black")+
@@ -60,5 +60,49 @@ ggplot(d2, aes(x,y)) +
   theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
 
 
+#********************************* Var 4 ********************************************************************
+d1=data.frame(table(V4))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
 
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+#********************************* Var 5 ********************************************************************
+V=as.factor(V5)
+levels(V)
+V <- factor(V, levels = c(levels(V), "Not very true"))
+d1=data.frame(table(V))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
 
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+
+#********************************* Var 6 ********************************************************************
+d1=data.frame(table(V6))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
+
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
