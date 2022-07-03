@@ -106,3 +106,84 @@ ggplot(d2, aes(x,y)) +
   theme(plot.title = element_text(hjust = 0.5))+
   #theme_minimal() +  
   theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+
+#********************************* Var 7 ********************************************************************
+d1=data.frame(table(V7))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
+
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+#********************************* Var 8 ********************************************************************
+d1=data.frame(table(V8))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
+
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+#********************************* Var 9 ********************************************************************
+d1=data.frame(table(V9))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
+
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
+#suma de todas las variables
+  DBT
+Cod<-function(A){
+  ch<-numeric();
+  for (i in 1:length(A)) {
+    ch[i]=switch(A[i], "Very true" = 4, "Not very true"=2,"Sort of true"=3, "Not at all true"=1)
+  }
+  ch;
+}
+#Parte I
+NV3=Cod(V3)#ER
+NV4=Cod(V4)#IR
+NV5=Cod(V5)#IDR
+NV6=Cod(V6)#IR
+NV7=Cod(V7)#IM
+NV8=Cod(V8)#ER
+NV9=Cod(V9)#IM
+NV10=Cod(V10)#IDR
+# Parte II
+NV11=Cod(V11)#IDR
+NV12=Cod(V12)#IR
+NV13=Cod(V13)#IM
+NV14=Cod(V14)#ER
+NV15=Cod(V15)#IDR
+NV16=Cod(V16)#IM
+NV17=Cod(V17)#IR
+NV18=Cod(V18)#IR
+R_P1=NV3+NV4+NV5+NV6+NV7+NV8+NV9+NV10
+R_P2=NV11+NV12+NV13+NV14+NV15+NV16+NV17+NV18
+R_T=NV3+NV4+NV5+NV6+NV7+NV8+NV9+NV10+NV11+NV12+NV13+NV14+NV15+NV16+NV17+NV18
+table(Result)
+#2*Intrinsic + Identified - Introjected - 2*External 
+RAI=2*(NV7+NV9+NV13+NV16)/4+(NV5+NV10+NV11+NV15)/4-(NV4+NV6+NV12+NV17+NV18)/5-2*(NV3+NV8+NV14)/3
+
+
+
+
+
