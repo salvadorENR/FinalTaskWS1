@@ -36,20 +36,28 @@ ggplot(d2, aes(x="",y=y,fill=x)) + geom_col(color = "black")+
 #Valores (1) Very true, (2) Not very true, (3) Sort of true, (4) Not at all true
 
 Cod<-function(A){
-ch
+  ch<-numeric();
   for (i in 1:length(A)) {
-    ch=switch(A[i], "Very true" = 1, "Not very true"=2,
-              + "Sort of true"=3, "Not at all true"=4)
+    ch[i]=switch(A[i], "Very true" = 1, "Not very true"=2,"Sort of true"=3, "Not at all true"=4)
   }
-  ch
+  ch;
 }
 NV3=Cod(V3)
 
+d1=data.frame(table(V3))
+colnames(d1) <- c('cat','freq')
+d2=data.frame(x=d1$cat,y=d1$freq)
+d2$x=factor(d2$x,levels=c("Very true","Not very true","Sort of true","Not at all true"))
 
-Genre
 
-
-
+ggplot(d2, aes(x,y)) +
+  geom_bar(stat = "Identity",color="black", fill="#ffffff")+ 
+  geom_text(aes(label = y), vjust = -0.3, color = "black")+
+  labs(y="Number of people", x = "Answers") +
+  #ggtitle("Participación de los profesores por departamento\n ")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  #theme_minimal() +  
+  theme(plot.title = element_text(hjust = 0.5),axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5)) 
 
 
 
